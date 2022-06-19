@@ -20,4 +20,15 @@ do
 	sleep 1
 done
 
-eval "$@"
+export RUNNER_ALLOW_RUNASROOT=1
+echo "Config"
+./config.sh \
+    --url "${RUNNER_URL}" \
+    --token "${RUNNER_TOKEN}" \
+    --unattended \
+    --replace \
+    --ephemeral \
+    --disableupdate
+
+echo "Run"
+./run.sh

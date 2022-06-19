@@ -463,6 +463,16 @@ COPY dockerd-entrypoint.sh /usr/local/bin/dockerd-entrypoint.sh
 COPY legal/bill_of_material.txt     /usr/share/doc/bill_of_material.txt
 COPY amazon-ssm-agent.json          /etc/amazon/ssm/amazon-ssm-agent.json
 
+# Install
+RUN yum install -y -q \
+    gzip tar wget which aspnetcore-runtime-6.0
+
+WORKDIR /actions-runner
+
+RUN curl -o actions-runner-linux-x64-2.291.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.293.0/actions-runner-linux-x64-2.293.0.tar.gz \
+    && tar xzf ./actions-runner-linux-x64-2.293.0.tar.gz \
+    && rm -f ./actions-runner-linux-x64-2.293.0.tar.gz
+
 ENTRYPOINT ["/usr/local/bin/dockerd-entrypoint.sh"]
 
 #=======================END of STD:5.0  =================
