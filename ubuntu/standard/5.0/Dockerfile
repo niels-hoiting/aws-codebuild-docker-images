@@ -51,22 +51,6 @@ RUN set -ex \
           libzip5 libzip-dev vim xvfb xz-utils zip zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN set -ex \
-    && curl -o actions-runner-linux.tar.gz -L https://github.com/actions/runner/releases/download/v2.293.0/actions-runner-linux-x64-2.293.0.tar.gz \
-    && tar xzf actions-runner-linux.tar.gz \
-    && rm -f actions-runner-linux.tar.gz \
-    && ./actions-runner-linux/bin/installdependencies.sh
-
-
-#RUN set -ex \
-#    wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
-#    && dpkg -i packages-microsoft-prod.deb && \
-#    && rm packages-microsoft-prod.deb \
-#    && apt-get update \
-#    && apt-get install -y apt-transport-https \
-#    && apt-get update \
-#    && apt-get install -y aspnetcore-runtime-6.0
-
 ENV LC_CTYPE="C.UTF-8"
 
 RUN useradd codebuild-user
@@ -478,6 +462,17 @@ COPY runtimes.yml /codebuild/image/config/runtimes.yml
 COPY dockerd-entrypoint.sh /usr/local/bin/dockerd-entrypoint.sh
 COPY legal/bill_of_material.txt     /usr/share/doc/bill_of_material.txt
 COPY amazon-ssm-agent.json          /etc/amazon/ssm/amazon-ssm-agent.json
+
+WORKDIR /actions-runner
+
+RUN set -ex \
+    && mkdir action-runner \
+    && cd action-runner \
+    && curl -o actions-runner-linux.tar.gz -L https://github.com/actions/runner/releases/download/v2.293.0/actions-runner-linux-x64-2.293.0.tar.gz \
+    && tar xzf actions-runner-linux.tar.gz \
+    && rm -f actions-runner-linux.tar.gz \
+    && ./bin/installdependencies.sh \
+    && cd ..
 
 ENTRYPOINT ["/usr/local/bin/dockerd-entrypoint.sh"]
 
