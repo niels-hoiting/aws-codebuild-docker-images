@@ -53,9 +53,9 @@ RUN set -ex \
 
 RUN set -ex \
     && mkdir ~/action-runner \
-    && curl -o action-runner/actions-runner-linux.tar.gz -L https://github.com/actions/runner/releases/download/v2.293.0/actions-runner-linux-x64-2.293.0.tar.gz \
-    && tar xzf ./action-runner/actions-runner-linux.tar.gz \
-    && rm -f ./action-runner/actions-runner-linux.tar.gz \
+    && curl -o ~/action-runner/actions-runner-linux.tar.gz -L https://github.com/actions/runner/releases/download/v2.293.0/actions-runner-linux-x64-2.293.0.tar.gz \
+    && tar xzf ~/action-runner/actions-runner-linux.tar.gz \
+    && rm -f ~/action-runner/actions-runner-linux.tar.gz \
     && ~/action-runner/bin/installdependencies.sh
 
 
