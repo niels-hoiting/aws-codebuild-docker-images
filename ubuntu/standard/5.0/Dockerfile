@@ -55,7 +55,7 @@ RUN set -ex \
     && curl -o actions-runner-linux.tar.gz -L https://github.com/actions/runner/releases/download/v2.293.0/actions-runner-linux-x64-2.293.0.tar.gz \
     && tar xzf actions-runner-linux.tar.gz \
     && rm -f actions-runner-linux.tar.gz \
-    && ./bin/installdependencies.sh
+    && ./actions-runner-linux/bin/installdependencies.sh
 
 
 #RUN set -ex \
