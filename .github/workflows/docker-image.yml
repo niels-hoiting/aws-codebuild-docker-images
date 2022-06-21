@@ -10,10 +10,10 @@ on:
         required: true
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: githubrunnerstack-githubrunnerimagerepositorya78d9e7d-qifjr8gv1ssp
+  ECR_REPOSITORY: imagepipelinestack-standardimagerepository2e260fb9-zbf85v6tmozn
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,7 +33,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha || inputs.tag }}
+          IMAGE_TAG: '5.0'
         run: |
           # Build a docker container and
           # push it to ECR so that it can
