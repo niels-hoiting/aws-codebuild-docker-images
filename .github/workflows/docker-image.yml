@@ -13,7 +13,7 @@ env:
   ECR_REPOSITORY: imagepipelinestack-standardimagerepository2e260fb9-zbf85v6tmozn
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, aws-codebuild-standard:5.0]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
