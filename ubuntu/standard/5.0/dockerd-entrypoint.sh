@@ -22,7 +22,7 @@ done
 
 export RUNNER_ALLOW_RUNASROOT=1
 echo "Config"
-./config.sh \
+/actions-runner/action-runner/config.sh \
     --url "${RUNNER_URL}" \
     --token "${RUNNER_TOKEN}" \
     --unattended \
@@ -31,4 +31,4 @@ echo "Config"
     --disableupdate
 
 echo "Run"
-./run.sh
+/actions-runner/action-runner/run.sh
