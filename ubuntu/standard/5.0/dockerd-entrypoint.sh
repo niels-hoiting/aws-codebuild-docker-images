@@ -25,6 +25,7 @@ echo "Config"
 /actions-runner/action-runner/config.sh \
     --url "${RUNNER_URL}" \
     --token "${RUNNER_TOKEN}" \
+    --labels "${RUNNER_LABELS}" \
     --unattended \
     --replace \
     --ephemeral \
